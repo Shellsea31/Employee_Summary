@@ -41,7 +41,7 @@ test("Can get id via getId()", () => {
   expect(e.getId()).toBe(testValue);
 });
 
-// 
+// passed
 test("Can get email via getEmail()", () => {
   const testValue = "test@test.com";
   const e = new Employee("Foo", 1, testValue);
