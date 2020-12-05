@@ -9,8 +9,38 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { listenerCount } = require("process");
 
+const questions = [
+  {
+    type: "input",
+    name: "name",
+    message: "What is your name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is your id?",
+  },
+];
 
+const getMembers = () => {
+  inquirer
+    .prompt(questions)
+    .then((answers) => {
+      console.log(answers);
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        console.log(
+          "This prompt could not be rendered in the current environment"
+        );
+      }
+      // possible else statement
+    });
+};
+
+getMembers();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
