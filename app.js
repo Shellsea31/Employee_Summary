@@ -16,10 +16,22 @@ const questions = require("./lib/questions")
 
 
 
-const getMembers = () => {
+const getEmployee = () => {
   inquirer
     .prompt(questions)
     .then((answers) => {
+      if (answers.role === "Employee") {
+        console.log("I'm an Employee")
+      }
+      if (answers.role === "Engineer") {
+        console.log("I'm an engineer")
+      }
+      if (answers.role === "Intern") {
+        console.log("I'm an Intern")
+      }
+      if (answers.role === "Manager") {
+        console.log("I'm a Manager")
+      }
       console.log(answers);
     })
     .catch((error) => {
@@ -32,7 +44,7 @@ const getMembers = () => {
     });
 };
 
-getMembers();
+getEmployee();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
