@@ -11,27 +11,31 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
-const questions = require("./lib/questions")
-
-
-
+const questions = require("./lib/questions");
 
 const getEmployee = () => {
   inquirer
     .prompt(questions)
     .then((answers) => {
-      if (answers.role === "Employee") {
-        console.log("I'm an Employee")
+      switch (answers.role) {
+        case "Employee":
+          console.log("I'm an Employee");
+          break;
+        case "Engineer":
+          console.log("I'm an Engineer");
+          break;
+        case "Intern":
+          console.log("I'm an Intern");
+          break;
+        case "Manager":
+          console.log("I'm a Manager");
+          break;
+
+        default:
+          console.log("You must pick a role.");
+          break;
       }
-      if (answers.role === "Engineer") {
-        console.log("I'm an engineer")
-      }
-      if (answers.role === "Intern") {
-        console.log("I'm an Intern")
-      }
-      if (answers.role === "Manager") {
-        console.log("I'm a Manager")
-      }
+
       console.log(answers);
     })
     .catch((error) => {
