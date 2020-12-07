@@ -20,10 +20,9 @@ const getEmployee = () => {
     .prompt(questions)
     .then((answers) => {
       switch (answers.role) {
-        case "Employee":
+        case "Employee": console.log(answers)
           break;
         case "Engineer":
-          console.log("I'm an Engineer");
           inquirer
             .prompt([
               {
@@ -48,8 +47,8 @@ const getEmployee = () => {
               },
             ])
             .then((school) => {
-              console.log(answers);
-              console.log(school);
+              let response = {...answers, ...school}
+              console.log(response)
             });
           break;
         case "Manager":
