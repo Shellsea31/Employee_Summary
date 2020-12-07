@@ -52,6 +52,18 @@ const getEmployee = () => {
           break;
         case "Manager":
           console.log("I'm a Manager");
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                name: "number",
+                message: "What is your office number?",
+              },
+            ])
+            .then((number) => {
+              console.log(answers);
+              console.log(number);
+            });
           break;
 
         default:
