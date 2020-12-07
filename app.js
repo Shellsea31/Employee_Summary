@@ -13,6 +13,8 @@ const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 
+const renderArray = [];
+
 const getEmployee = () => {
   inquirer
     .prompt(questions)
@@ -31,8 +33,8 @@ const getEmployee = () => {
               },
             ])
             .then((github) => {
-              console.log(answers);
-              console.log(github);
+              let response = {...answers, ...github}
+              console.log(response)
             });
           break;
         case "Intern":
