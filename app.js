@@ -62,8 +62,8 @@ const getEmployee = () => {
               },
             ])
             .then((number) => {
-              console.log(answers);
-              console.log(number);
+              let response = {...answers, ...number}
+              console.log(response);
             });
           break;
 
