@@ -13,14 +13,16 @@ const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 
-const renderArray = [];
+const arr = [];
 
 const getEmployee = () => {
   inquirer
     .prompt(questions)
     .then((answers) => {
       switch (answers.role) {
-        case "Employee": console.log(answers)
+        case "Employee": 
+        arr.push(answers);
+        console.log(arr)
           break;
         case "Engineer":
           inquirer
@@ -33,7 +35,8 @@ const getEmployee = () => {
             ])
             .then((github) => {
               let response = {...answers, ...github}
-              console.log(response)
+              arr.push(response);
+              console.log(arr)
             });
           break;
         case "Intern":
@@ -48,7 +51,8 @@ const getEmployee = () => {
             ])
             .then((school) => {
               let response = {...answers, ...school}
-              console.log(response)
+              arr.push(response);
+              console.log(arr)
             });
           break;
         case "Manager":
@@ -63,7 +67,8 @@ const getEmployee = () => {
             ])
             .then((number) => {
               let response = {...answers, ...number}
-              console.log(response);
+              arr.push(response);
+              console.log(arr)
             });
           break;
 
