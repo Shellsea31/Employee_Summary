@@ -31,12 +31,24 @@ const getEmployee = () => {
               },
             ])
             .then((github) => {
-              console.log(answers)
+              console.log(answers);
               console.log(github);
             });
           break;
         case "Intern":
           console.log("I'm an Intern");
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                name: "school",
+                message: "What is your school?",
+              },
+            ])
+            .then((school) => {
+              console.log(answers);
+              console.log(school);
+            });
           break;
         case "Manager":
           console.log("I'm a Manager");
