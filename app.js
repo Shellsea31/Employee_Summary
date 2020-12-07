@@ -19,10 +19,21 @@ const getEmployee = () => {
     .then((answers) => {
       switch (answers.role) {
         case "Employee":
-          console.log("I'm an Employee");
           break;
         case "Engineer":
           console.log("I'm an Engineer");
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                name: "github",
+                message: "What is your Github username?",
+              },
+            ])
+            .then((github) => {
+              console.log(answers)
+              console.log(github);
+            });
           break;
         case "Intern":
           console.log("I'm an Intern");
@@ -35,8 +46,6 @@ const getEmployee = () => {
           console.log("You must pick a role.");
           break;
       }
-
-      console.log(answers);
     })
     .catch((error) => {
       if (error.isTtyError) {
