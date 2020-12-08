@@ -16,7 +16,7 @@ const questions = require("./lib/questions");
 const getEmployee = () => {
   inquirer
     .prompt(questions)
-    .then((answers) => {
+    .then(answers => {
       if (answers.role === "Engineer") {
         inquirer
           .prompt({
@@ -24,7 +24,7 @@ const getEmployee = () => {
             name: "github",
             message: "What is your Github username?",
           })
-          .then((github) => {
+          .then(github => {
             let response = { ...answers, ...github };
             arr.push(response);
             console.log(arr);
@@ -36,7 +36,7 @@ const getEmployee = () => {
             name: "school",
             message: "What is your school?",
           })
-          .then((school) => {
+          .then(school => {
             let response = { ...answers, ...school };
             arr.push(response);
             console.log(arr);
@@ -48,7 +48,7 @@ const getEmployee = () => {
             name: "number",
             message: "What is your office number?",
           })
-          .then((number) => {
+          .then(number => {
             let response = { ...answers, ...number };
             arr.push(response);
             console.log(arr);
@@ -61,6 +61,12 @@ const getEmployee = () => {
         type: "confirm",
         name: "addEmployee",
         message: "Do you want to add a new Employee?",
+      }).then(confirm => {
+        if (confirm) {
+          getEmployee()
+        } else {
+          console.log("done")
+        }
       });
     })
     .catch((error) => {
