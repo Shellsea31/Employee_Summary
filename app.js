@@ -12,15 +12,14 @@ const render = require("./lib/htmlRenderer");
 const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
+const newMember = require("./lib/newMember");
 
 // function to prompt employee questions
 const getEmployee = () => {
-
   inquirer
-  // questions exported from library
+    // questions exported from library
     .prompt(questions)
-    .then(answers => {
-
+    .then((answers) => {
       // engineer asks github
       if (answers.role === "Engineer") {
         inquirer
@@ -30,12 +29,12 @@ const getEmployee = () => {
             message: "What is your Github username?",
           })
           // add original answers and github answer to 'response'
-          .then(github => {
+          .then((github) => {
             let response = { ...answers, ...github };
-            console.log(response)
+            console.log(response);
             // arr.push(response);
           });
-          // interns asks for school
+        // interns asks for school
       } else if (answers.role === "Intern") {
         inquirer
           .prompt({
@@ -44,12 +43,12 @@ const getEmployee = () => {
             message: "What is your school?",
           })
           // add original answers and school answer to 'response'
-          .then(school => {
+          .then((school) => {
             let response = { ...answers, ...school };
             // arr.push(response);
             console.log(response);
           });
-          // manager asks for office number
+        // manager asks for office number
       } else if (answers.role === "Manager") {
         inquirer
           .prompt({
@@ -58,30 +57,16 @@ const getEmployee = () => {
             message: "What is your office number?",
           })
           // add original answers and number answer to 'response'
-          .then(number => {
+          .then((number) => {
             let response = { ...answers, ...number };
             // arr.push(response);
             console.log(response);
           });
-          // just reg employee console log answers
-      } else 
+        // just reg employee console log answers
+      }
       // arr.push(answers);
-      console.log(answers);
+      else console.log(answers);
     })
-    // .then(() => {
-    //   inquirer.prompt({
-    //     type: "confirm",
-    //     name: "addEmployee",
-    //     message: "Do you want to add a new Employee?",
-    //   })
-    //   .then(confirm => {
-    //     if (confirm) {
-    //       getEmployee()
-    //     } else {
-    //       console.log("done")
-    //     }
-    //   });
-    // })
     .catch((error) => {
       if (error.isTtyError) {
         console.log(
@@ -92,11 +77,16 @@ const getEmployee = () => {
     });
 };
 
-
+const addMember = () => {
+  inquirer.prompt(newMember).then((confirmation) => {
+    console.log(confirmation);
+  });
+};
 
 // let arr = [];
 
 getEmployee();
+// addMember();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
