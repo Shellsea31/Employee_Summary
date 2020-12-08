@@ -14,9 +14,11 @@ const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 
 const getEmployee = () => {
+
   inquirer
     .prompt(questions)
     .then(answers => {
+
       if (answers.role === "Engineer") {
         inquirer
           .prompt({
@@ -26,8 +28,8 @@ const getEmployee = () => {
           })
           .then(github => {
             let response = { ...answers, ...github };
-            arr.push(response);
-            console.log(arr);
+            console.log(response)
+            // arr.push(response);
           });
       } else if (answers.role === "Intern") {
         inquirer
@@ -38,8 +40,8 @@ const getEmployee = () => {
           })
           .then(school => {
             let response = { ...answers, ...school };
-            arr.push(response);
-            console.log(arr);
+            // arr.push(response);
+            console.log(response);
           });
       } else if (answers.role === "Manager") {
         inquirer
@@ -50,25 +52,27 @@ const getEmployee = () => {
           })
           .then(number => {
             let response = { ...answers, ...number };
-            arr.push(response);
-            console.log(arr);
+            // arr.push(response);
+            console.log(response);
           });
-      } else arr.push(answers);
-      console.log(arr);
-    })
-    .then(() => {
-      inquirer.prompt({
-        type: "confirm",
-        name: "addEmployee",
-        message: "Do you want to add a new Employee?",
-      }).then(confirm => {
-        if (confirm) {
-          getEmployee()
-        } else {
-          console.log("done")
-        }
-      });
-    })
+      // } else arr.push(answers);
+      console.log(answers);
+    }
+  })
+    // .then(() => {
+    //   inquirer.prompt({
+    //     type: "confirm",
+    //     name: "addEmployee",
+    //     message: "Do you want to add a new Employee?",
+    //   })
+    //   .then(confirm => {
+    //     if (confirm) {
+    //       getEmployee()
+    //     } else {
+    //       console.log("done")
+    //     }
+    //   });
+    // })
     .catch((error) => {
       if (error.isTtyError) {
         console.log(
@@ -79,63 +83,7 @@ const getEmployee = () => {
     });
 };
 
-// switch (answers.role) {
-//   case "Employee":
-//   arr.push(response);
-//   console.log(arr)
-//     break;
-//   case "Engineer":
-//     inquirer
-//       .prompt([
-//         {
-//           type: "input",
-//           name: "github",
-//           message: "What is your Github username?",
-//         },
-//       ])
-//       .then((github) => {
-//         let response = {...answers, ...github}
-//         arr.push(response);
-//         console.log(arr)
-//       });
-//     break;
-//   case "Intern":
-//     console.log("I'm an Intern");
-//     inquirer
-//       .prompt([
-//         {
-//           type: "input",
-//           name: "school",
-//           message: "What is your school?",
-//         },
-//       ])
-//       .then((school) => {
-//         let response = {...answers, ...school}
-//         arr.push(response);
-//         console.log(arr)
-//       });
-//     break;
-//   case "Manager":
-//     console.log("I'm a Manager");
-//     inquirer
-//       .prompt([
-//         {
-//           type: "input",
-//           name: "number",
-//           message: "What is your office number?",
-//         },
-//       ])
-//       .then((number) => {
-//         let response = {...answers, ...number}
-//         arr.push(response);
-//         console.log(arr)
-//       });
-//     break;
 
-//   default:
-//     console.log("You must pick a role.");
-//     break;
-// }
 
 let arr = [];
 
