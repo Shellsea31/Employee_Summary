@@ -14,6 +14,8 @@ const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 const newMember = require("./lib/newMember");
 
+let arr = [];
+
 // function to prompt employee questions
 const getEmployee = () => {
   inquirer
@@ -32,6 +34,7 @@ const getEmployee = () => {
           .then((github) => {
             let response = { ...answers, ...github };
             console.log(response);
+            pushMember(response);
           })
           .then(() => {
             addMember();
@@ -84,12 +87,18 @@ const getEmployee = () => {
 const addMember = () => {
   inquirer.prompt(newMember).then((confirmation) => {
     if (confirmation.add) {
-      console.log("yes")
-    } else console.log("no")
+      getEmployee();
+    } else console.log("no");
   });
 };
 
-// let arr = [];
+const pushMember = (res) => {
+  // console.log(res)
+
+  arr.push(res);
+  console.log(arr)
+
+};
 
 getEmployee();
 
