@@ -13,69 +13,55 @@ const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 
-const arr = [];
-
 const getEmployee = () => {
   inquirer
     .prompt(questions)
     .then((answers) => {
-      switch (answers.role) {
-        case "Employee": 
-        arr.push(answers);
-        console.log(arr)
-          break;
-        case "Engineer":
-          inquirer
-            .prompt([
-              {
-                type: "input",
-                name: "github",
-                message: "What is your Github username?",
-              },
-            ])
-            .then((github) => {
-              let response = {...answers, ...github}
-              arr.push(response);
-              console.log(arr)
-            });
-          break;
-        case "Intern":
-          console.log("I'm an Intern");
-          inquirer
-            .prompt([
-              {
-                type: "input",
-                name: "school",
-                message: "What is your school?",
-              },
-            ])
-            .then((school) => {
-              let response = {...answers, ...school}
-              arr.push(response);
-              console.log(arr)
-            });
-          break;
-        case "Manager":
-          console.log("I'm a Manager");
-          inquirer
-            .prompt([
-              {
-                type: "input",
-                name: "number",
-                message: "What is your office number?",
-              },
-            ])
-            .then((number) => {
-              let response = {...answers, ...number}
-              arr.push(response);
-              console.log(arr)
-            });
-          break;
-
-        default:
-          console.log("You must pick a role.");
-          break;
-      }
+      if (answers.role === "Engineer") {
+        inquirer
+          .prompt({
+            type: "input",
+            name: "github",
+            message: "What is your Github username?",
+          })
+          .then((github) => {
+            let response = { ...answers, ...github };
+            arr.push(response);
+            console.log(arr);
+          });
+      } else if (answers.role === "Intern") {
+        inquirer
+          .prompt({
+            type: "input",
+            name: "school",
+            message: "What is your school?",
+          })
+          .then((school) => {
+            let response = { ...answers, ...school };
+            arr.push(response);
+            console.log(arr);
+          });
+      } else if (answers.role === "Manager") {
+        inquirer
+          .prompt({
+            type: "input",
+            name: "number",
+            message: "What is your office number?",
+          })
+          .then((number) => {
+            let response = { ...answers, ...number };
+            arr.push(response);
+            console.log(arr);
+          });
+      } else arr.push(answers);
+      console.log(arr);
+    })
+    .then(() => {
+      inquirer.prompt({
+        type: "confirm",
+        name: "addEmployee",
+        message: "Do you want to add a new Employee?",
+      });
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -86,6 +72,66 @@ const getEmployee = () => {
       // possible else statement
     });
 };
+
+// switch (answers.role) {
+//   case "Employee":
+//   arr.push(response);
+//   console.log(arr)
+//     break;
+//   case "Engineer":
+//     inquirer
+//       .prompt([
+//         {
+//           type: "input",
+//           name: "github",
+//           message: "What is your Github username?",
+//         },
+//       ])
+//       .then((github) => {
+//         let response = {...answers, ...github}
+//         arr.push(response);
+//         console.log(arr)
+//       });
+//     break;
+//   case "Intern":
+//     console.log("I'm an Intern");
+//     inquirer
+//       .prompt([
+//         {
+//           type: "input",
+//           name: "school",
+//           message: "What is your school?",
+//         },
+//       ])
+//       .then((school) => {
+//         let response = {...answers, ...school}
+//         arr.push(response);
+//         console.log(arr)
+//       });
+//     break;
+//   case "Manager":
+//     console.log("I'm a Manager");
+//     inquirer
+//       .prompt([
+//         {
+//           type: "input",
+//           name: "number",
+//           message: "What is your office number?",
+//         },
+//       ])
+//       .then((number) => {
+//         let response = {...answers, ...number}
+//         arr.push(response);
+//         console.log(arr)
+//       });
+//     break;
+
+//   default:
+//     console.log("You must pick a role.");
+//     break;
+// }
+
+let arr = [];
 
 getEmployee();
 
