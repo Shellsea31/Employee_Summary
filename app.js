@@ -83,7 +83,9 @@ const getEmployee = () => {
 
 const addMember = () => {
   inquirer.prompt(newMember).then((confirmation) => {
-    console.log(confirmation);
+    if (confirmation.add) {
+      console.log("yes")
+    } else console.log("no")
   });
 };
 
