@@ -46,8 +46,9 @@ const getEmployee = () => {
           // add original answers and school answer to 'response'
           .then((school) => {
             let response = { ...answers, ...school };
-            // arr.push(response);
             console.log(response);
+            addMember();
+            // arr.push(response);
           });
         // manager asks for office number
       } else if (answers.role === "Manager") {
@@ -60,13 +61,13 @@ const getEmployee = () => {
           // add original answers and number answer to 'response'
           .then((number) => {
             let response = { ...answers, ...number };
-            // arr.push(response);
             console.log(response);
+            addMember();
+            // arr.push(response);
           });
         // just reg employee console log answers
-      }
-      // arr.push(answers);
-      else console.log(answers);
+      } else console.log(answers);
+      addMember();
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -87,7 +88,6 @@ const addMember = () => {
 // let arr = [];
 
 getEmployee();
-
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
