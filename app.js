@@ -51,12 +51,13 @@ const getEmployee = () => {
           .then((school) => {
             let response = { ...answers, ...school };
             console.log(response);
+            pushMember(response);
           })
           .then(() => {
             addMember();
           });
         // manager asks for office number
-      } else if (answers.role === "Manager") {
+      } else
         inquirer
           .prompt({
             type: "input",
@@ -67,12 +68,12 @@ const getEmployee = () => {
           .then((number) => {
             const response = { ...answers, ...number };
             console.log(response);
+            pushMember(response);
           })
           .then(() => {
             addMember();
           });
-        // just reg employee console log answers
-      } else addMember();
+      // just reg employee console log answers
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -88,16 +89,14 @@ const addMember = () => {
   inquirer.prompt(newMember).then((confirmation) => {
     if (confirmation.add) {
       getEmployee();
-    } else console.log("no");
+    } else console.log(arr);
   });
 };
 
 const pushMember = (res) => {
-  // console.log(res)
-
   arr.push(res);
-  console.log(arr)
-
+  console.log(arr);
+  return arr;
 };
 
 getEmployee();
