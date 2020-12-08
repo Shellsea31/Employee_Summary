@@ -32,8 +32,9 @@ const getEmployee = () => {
           .then((github) => {
             let response = { ...answers, ...github };
             console.log(response);
+          })
+          .then(() => {
             addMember();
-            // arr.push(response);
           });
         // interns asks for school
       } else if (answers.role === "Intern") {
@@ -47,8 +48,9 @@ const getEmployee = () => {
           .then((school) => {
             let response = { ...answers, ...school };
             console.log(response);
+          })
+          .then(() => {
             addMember();
-            // arr.push(response);
           });
         // manager asks for office number
       } else if (answers.role === "Manager") {
@@ -60,14 +62,14 @@ const getEmployee = () => {
           })
           // add original answers and number answer to 'response'
           .then((number) => {
-            let response = { ...answers, ...number };
+            const response = { ...answers, ...number };
             console.log(response);
+          })
+          .then(() => {
             addMember();
-            // arr.push(response);
           });
         // just reg employee console log answers
-      } else console.log(answers);
-      addMember();
+      } else addMember();
     })
     .catch((error) => {
       if (error.isTtyError) {
