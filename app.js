@@ -32,6 +32,7 @@ const getEmployee = () => {
           .then((github) => {
             let response = { ...answers, ...github };
             console.log(response);
+            addMember();
             // arr.push(response);
           });
         // interns asks for school
@@ -86,7 +87,7 @@ const addMember = () => {
 // let arr = [];
 
 getEmployee();
-// addMember();
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
