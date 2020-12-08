@@ -13,12 +13,15 @@ const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 
+// function to prompt employee questions
 const getEmployee = () => {
 
   inquirer
+  // questions exported from library
     .prompt(questions)
     .then(answers => {
 
+      // engineer asks github
       if (answers.role === "Engineer") {
         inquirer
           .prompt({
@@ -26,11 +29,13 @@ const getEmployee = () => {
             name: "github",
             message: "What is your Github username?",
           })
+          // add original answers and github answer to 'response'
           .then(github => {
             let response = { ...answers, ...github };
             console.log(response)
             // arr.push(response);
           });
+          // interns asks for school
       } else if (answers.role === "Intern") {
         inquirer
           .prompt({
@@ -38,11 +43,13 @@ const getEmployee = () => {
             name: "school",
             message: "What is your school?",
           })
+          // add original answers and school answer to 'response'
           .then(school => {
             let response = { ...answers, ...school };
             // arr.push(response);
             console.log(response);
           });
+          // manager asks for office number
       } else if (answers.role === "Manager") {
         inquirer
           .prompt({
@@ -50,15 +57,17 @@ const getEmployee = () => {
             name: "number",
             message: "What is your office number?",
           })
+          // add original answers and number answer to 'response'
           .then(number => {
             let response = { ...answers, ...number };
             // arr.push(response);
             console.log(response);
           });
-      // } else arr.push(answers);
+          // just reg employee console log answers
+      } else 
+      // arr.push(answers);
       console.log(answers);
-    }
-  })
+    })
     // .then(() => {
     //   inquirer.prompt({
     //     type: "confirm",
@@ -85,7 +94,7 @@ const getEmployee = () => {
 
 
 
-let arr = [];
+// let arr = [];
 
 getEmployee();
 
