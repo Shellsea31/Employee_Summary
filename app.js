@@ -159,8 +159,8 @@ const pushMember = (res) => {
   arr.push(res);
 };
 
-const checkManager = () => {
-  console.log(arr);
-};
+// const checkManager = () => {
+//   console.log(arr);
+// };
 
 getEmployee();
