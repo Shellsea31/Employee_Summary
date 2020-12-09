@@ -12,7 +12,7 @@ const render = require("./lib/htmlRenderer");
 const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
-const check = require("./lib/questions")
+const check = require("./lib/questions");
 const newMember = require("./lib/newMember");
 
 let arr = [];
@@ -30,6 +30,11 @@ const getEmployee = () => {
             type: "input",
             name: "github",
             message: "What is your Github username?",
+            validate: (answer) => {
+              if (answer !== "") {
+                return true;
+              } else return "Please provide an answer.";
+            },
           })
           // add original answers and github answer to 'response'
           .then((github) => {
@@ -53,6 +58,11 @@ const getEmployee = () => {
             type: "input",
             name: "school",
             message: "What is your school?",
+            validate: (answer) => {
+              if (answer !== "") {
+                return true;
+              } else return "Please provide an answer.";
+            },
           })
           // add original answers and school answer to 'response'
           .then((school) => {
@@ -76,6 +86,11 @@ const getEmployee = () => {
             type: "input",
             name: "number",
             message: "What is your office number?",
+            validate: (answer) => {
+              if (answer !== "") {
+                return true;
+              } else return "Please provide an answer.";
+            },
           })
           // add original answers and number answer to 'response'
           .then((number) => {
@@ -118,8 +133,6 @@ const addMember = () => {
       default:
         break;
     }
-
-
   });
 };
 
@@ -130,7 +143,9 @@ const writeIt = () => {
 
   fs.writeFile(outputPath, render(arr), (err) => {
     if (err) throw err;
-    console.log("written");
+    console.log(
+      "Congratulations! Your file has been created. Look inside the folder 'output' and view your final product."
+    );
   });
   // render(arr);
 };
@@ -138,8 +153,6 @@ const writeIt = () => {
 const pushMember = (res) => {
   arr.push(res);
 };
-
-
 
 getEmployee();
 
@@ -171,18 +184,18 @@ getEmployee();
 //   console.log("written");
 // });
 
-  //   if (confirmation.add) {
-  //     getEmployee();
-  //   } else {
-  //     () => {
-  //       if (!fs.existsSync(OUTPUT_DIR)) {
-  //         fs.mkdirSync(OUTPUT_DIR);
-  //       }
+//   if (confirmation.add) {
+//     getEmployee();
+//   } else {
+//     () => {
+//       if (!fs.existsSync(OUTPUT_DIR)) {
+//         fs.mkdirSync(OUTPUT_DIR);
+//       }
 
-  //       fs.writeFile(outputPath, render(arr), (err) => {
-  //         if (err) throw err;
-  //         console.log("written");
-  //       });
-  //       // render(arr);
-  //     };
-  //   }
+//       fs.writeFile(outputPath, render(arr), (err) => {
+//         if (err) throw err;
+//         console.log("written");
+//       });
+//       // render(arr);
+//     };
+//   }
