@@ -12,6 +12,7 @@ const render = require("./lib/htmlRenderer");
 const { listenerCount } = require("process");
 const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
+const check = require("./lib/questions")
 const newMember = require("./lib/newMember");
 
 let arr = [];
@@ -34,7 +35,13 @@ const getEmployee = () => {
           .then((github) => {
             let response = { ...answers, ...github };
             console.log(response);
-            pushMember(response);
+            const newEngineer = new Engineer(
+              response.name,
+              response.id,
+              response.email,
+              response.github
+            );
+            pushMember(newEngineer);
           })
           .then(() => {
             addMember();
@@ -51,7 +58,13 @@ const getEmployee = () => {
           .then((school) => {
             let response = { ...answers, ...school };
             console.log(response);
-            pushMember(response);
+            const newIntern = new Intern(
+              response.name,
+              response.id,
+              response.email,
+              response.school
+            );
+            pushMember(newIntern);
           })
           .then(() => {
             addMember();
@@ -68,7 +81,13 @@ const getEmployee = () => {
           .then((number) => {
             const response = { ...answers, ...number };
             console.log(response);
-            pushMember(response);
+            const newManager = new Manager(
+              response.name,
+              response.id,
+              response.email,
+              response.number
+            );
+            pushMember(newManager);
           })
           .then(() => {
             addMember();
@@ -87,20 +106,42 @@ const getEmployee = () => {
 
 const addMember = () => {
   inquirer.prompt(newMember).then((confirmation) => {
-    if (confirmation.add) {
-      getEmployee();
-    } else render(arr);
+    switch (confirmation.add) {
+      case true:
+        getEmployee();
+
+        break;
+
+      case false:
+        writeIt();
+        break;
+      default:
+        break;
+    }
+
+
   });
+};
+
+const writeIt = () => {
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
+
+  fs.writeFile(outputPath, render(arr), (err) => {
+    if (err) throw err;
+    console.log("written");
+  });
+  // render(arr);
 };
 
 const pushMember = (res) => {
   arr.push(res);
 };
 
+
+
 getEmployee();
-
-
-
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -124,3 +165,24 @@ getEmployee();
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+// fs.writeFile("index.html", "data", (err) => {
+//   if (err) throw err;
+//   console.log("written");
+// });
+
+  //   if (confirmation.add) {
+  //     getEmployee();
+  //   } else {
+  //     () => {
+  //       if (!fs.existsSync(OUTPUT_DIR)) {
+  //         fs.mkdirSync(OUTPUT_DIR);
+  //       }
+
+  //       fs.writeFile(outputPath, render(arr), (err) => {
+  //         if (err) throw err;
+  //         console.log("written");
+  //       });
+  //       // render(arr);
+  //     };
+  //   }
