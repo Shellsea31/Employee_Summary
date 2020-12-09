@@ -22,65 +22,12 @@ const getEmployee = () => {
     // questions exported from library
     .prompt(questions)
     .then((answers) => {
-      // engineer asks github
       if (answers.role === "Engineer") {
-        addEngineer();
-        // interns asks for school
+        addEngineer(answers);
       } else if (answers.role === "Intern") {
-        inquirer
-          .prompt({
-            type: "input",
-            name: "school",
-            message: "What is your school?",
-            validate: (answer) => {
-              if (answer !== "") {
-                return true;
-              } else return "Please provide an answer.";
-            },
-          })
-          // add original answers and school answer to 'response'
-          .then((school) => {
-            let response = { ...answers, ...school };
-            const newIntern = new Intern(
-              response.name,
-              response.id,
-              response.email,
-              response.school
-            );
-            pushMember(newIntern);
-          })
-          .then(() => {
-            addMember();
-          });
-        // manager asks for office number
+        addIntern(answers);
       } else
-        inquirer
-          .prompt({
-            type: "input",
-            name: "number",
-            message: "What is your office number?",
-            validate: (answer) => {
-              if (answer !== "") {
-                return true;
-              } else return "Please provide an answer.";
-            },
-          })
-          // add original answers and number answer to 'response'
-          .then((number) => {
-            const response = { ...answers, ...number };
-            const newManager = new Manager(
-              response.name,
-              response.id,
-              response.email,
-              response.number
-            );
-
-            pushMember(newManager);
-          })
-          .then(() => {
-            addMember();
-          });
-      // just reg employee console log answers
+        addManager(answers);
     })
     .catch((err) => {
       if (err) {
@@ -121,7 +68,6 @@ const addEngineer = (answers) => {
         } else return "Please provide an answer.";
       },
     })
-    // add original answers and github answer to 'response'
     .then((github) => {
       let response = { ...answers, ...github };
       const newEngineer = new Engineer(
@@ -136,6 +82,62 @@ const addEngineer = (answers) => {
       addMember();
     });
 };
+
+const addIntern = (answers) => {
+  inquirer
+    .prompt({
+      type: "input",
+      name: "school",
+      message: "What is your school?",
+      validate: (answer) => {
+        if (answer !== "") {
+          return true;
+        } else return "Please provide an answer.";
+      },
+    })
+    .then((school) => {
+      let response = { ...answers, ...school };
+      const newIntern = new Intern(
+        response.name,
+        response.id,
+        response.email,
+        response.school
+      );
+      pushMember(newIntern);
+    })
+    .then(() => {
+      addMember();
+    });
+};
+
+const addManager = (answers) => {
+  inquirer
+  .prompt({
+    type: "input",
+    name: "number",
+    message: "What is your office number?",
+    validate: (answer) => {
+      if (answer !== "") {
+        return true;
+      } else return "Please provide an answer.";
+    },
+  })
+  // add original answers and number answer to 'response'
+  .then((number) => {
+    const response = { ...answers, ...number };
+    const newManager = new Manager(
+      response.name,
+      response.id,
+      response.email,
+      response.number
+    );
+
+    pushMember(newManager);
+  })
+  .then(() => {
+    addMember();
+  });
+}
 
 // function to create a directory if no directory exists and the write a file inside of it
 const writeIt = () => {
