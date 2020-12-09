@@ -89,17 +89,18 @@ const addMember = () => {
   inquirer.prompt(newMember).then((confirmation) => {
     if (confirmation.add) {
       getEmployee();
-    } else console.log(arr);
+    } else render(arr);
   });
 };
 
 const pushMember = (res) => {
   arr.push(res);
-  console.log(arr);
-  return arr;
 };
 
 getEmployee();
+
+
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
