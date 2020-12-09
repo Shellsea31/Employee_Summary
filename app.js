@@ -151,7 +151,6 @@ const writeIt = () => {
       "Congratulations! Your file has been created. Look inside the folder 'output' and view your final product."
     );
   });
-  // render(arr);
 };
 
 // function to push new team members to empty "arr"
