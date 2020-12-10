@@ -36,4 +36,6 @@ node app.js
 
 ![_C__Users_shels_Desktop_Homework_08-Homework_output_team html](https://user-images.githubusercontent.com/70654835/101710189-d83d9100-3a45-11eb-822d-f6dc8bcca61b.png)
 
+Try the app [here](https://shellsea31.github.io/Employee_Summary/)
+
 ## Contributors
