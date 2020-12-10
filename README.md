@@ -2,6 +2,9 @@
 
 ## Description
 
+This week I was tasked to create a Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. Using jest,
+I was to ensure that all the given tests pass before creating the functionality. Using inquirer all employees would be asked for their name, id, email, and role. Depending on their role, employees were asked for their github (Engineers), school (Interns), and office number (Managers). I had to make sure to export and require all appropriate modules, including questions, and functions I had tested. All role based functions had to inherit from the Employee class. Also, I validated all answers so that no answer would prompt a message.
+
 ## Installation Requirements
 
 * Node.js 
