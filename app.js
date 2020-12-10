@@ -9,8 +9,8 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-// const { listenerCount } = require("process");
-// const Employee = require("./lib/Employee");
+const { listenerCount } = require("process");
+const Employee = require("./lib/Employee");
 const questions = require("./lib/questions");
 const newMember = require("./lib/newMember");
 
