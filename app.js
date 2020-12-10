@@ -26,8 +26,8 @@ const getEmployee = () => {
         addEngineer(answers);
       } else if (answers.role === "Intern") {
         addIntern(answers);
-      } else
-        addManager(answers);
+      } else 
+      addManager(answers);
     })
     .catch((err) => {
       if (err) {
@@ -111,33 +111,34 @@ const addIntern = (answers) => {
 };
 
 const addManager = (answers) => {
+  
   inquirer
-  .prompt({
-    type: "input",
-    name: "number",
-    message: "What is your office number?",
-    validate: (answer) => {
-      if (answer !== "") {
-        return true;
-      } else return "Please provide an answer.";
-    },
-  })
-  // add original answers and number answer to 'response'
-  .then((number) => {
-    const response = { ...answers, ...number };
-    const newManager = new Manager(
-      response.name,
-      response.id,
-      response.email,
-      response.number
-    );
-
-    pushMember(newManager);
-  })
-  .then(() => {
-    addMember();
-  });
-}
+    .prompt({
+      type: "input",
+      name: "number",
+      message: "What is your office number?",
+      validate: (answer) => {
+        if (answer !== "") {
+          return true;
+        } else return "Please provide an answer.";
+      },
+    })
+    // add original answers and number answer to 'response'
+    .then((number) => {
+      const response = { ...answers, ...number };
+      const theManager = new Manager(
+        response.name,
+        response.id,
+        response.email,
+        response.number
+      );
+      checkManager(arr)
+      pushMember(theManager);
+    })
+    .then(() => {
+      addMember();
+    });
+};
 
 // function to create a directory if no directory exists and the write a file inside of it
 const writeIt = () => {
@@ -158,8 +159,11 @@ const pushMember = (res) => {
   arr.push(res);
 };
 
-// const checkManager = () => {
-//   console.log(arr);
-// };
+const checkManager = (arr) => {
+  const findManager = arr.find(element => element.constructor.name === "Manager");
+  if (findManager) {
+    console.log(findManager.name)
+  } else console.log("add a manager")
+};
 
 getEmployee();
