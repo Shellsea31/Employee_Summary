@@ -1,5 +1,7 @@
 # Unit 10 OOP: Template Engine - Employee Summary
 
+ <img src="https://img.shields.io/badge/LICENSE-mit-green"/>
+
 ## Description
 
 This week I was tasked to create a Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. Using jest,
@@ -39,3 +41,8 @@ node app.js
 View an example of the finished project [here](https://shellsea31.github.io/Employee_Summary/)
 
 ## Contributors
+ **Shelsy Barrera**
+ * Github: Shellsea31
+ * Gitlab: @Shellsea
+ * LinkedIn: Shelsy Barrera
+ * Email: elainesbarrera@gmail.com
