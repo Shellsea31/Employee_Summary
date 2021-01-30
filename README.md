@@ -43,6 +43,5 @@ View an example of the finished project [here](https://shellsea31.github.io/Empl
 ## Contributors
  **Shelsy Barrera**
  * Github: Shellsea31
- * Gitlab: @Shellsea
  * LinkedIn: Shelsy Barrera
  * Email: elainesbarrera@gmail.com
